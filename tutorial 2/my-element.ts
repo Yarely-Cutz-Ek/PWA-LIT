@@ -1,4 +1,4 @@
-paso 7
+paso 8
 import {LitElement, html} from 'lit';
 import {customElement, state} from 'lit/decorators.js';
 import {map} from 'lit/directives/map.js';
