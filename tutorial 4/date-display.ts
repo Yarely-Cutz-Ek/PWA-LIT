@@ -1,11 +1,14 @@
-import {LitElement, html} from 'lit';
+paso 2
+import {LitElement, html, PropertyValues} from 'lit';
 import {customElement, property} from 'lit/decorators.js';
-import {dateConverter} from './date-converter.js';
 
 @customElement('date-display')
 export class DateDisplay extends LitElement {
-  @property({converter: dateConverter})
+  @property({attribute: false})
   date = new Date();
+
+  @property({type: String, attribute: 'date-str'})
+  dateStr = '';
 
   render() {
     const locale = 'en-US';
