@@ -1,6 +1,7 @@
-paso 9
+paso 10
 import {LitElement, html, PropertyValues, noChange} from 'lit';
 import {customElement, property, query} from 'lit/decorators.js';
+import {animate} from '@lit-labs/motion';
 import {styleMap} from 'lit/directives/style-map.js';
 import {styles} from './styles.js';
 
@@ -49,6 +50,7 @@ export class MotionCarousel extends LitElement {
     const indicatorWidth = `${w}%`;
     return html`
       <div class="fit"
+        ${animate()}
         @click=${this.clickHandler}
         style=${styleMap({left: animateLeft})}>
         <div class="fit" style=${
@@ -63,6 +65,7 @@ export class MotionCarousel extends LitElement {
         </div>
       </div>
       <div class="bar"><div class="indicator"
+          ${animate()}
           style=${styleMap({left: indicatorLeft, width: indicatorWidth})}></div></div>
     `;
   }
