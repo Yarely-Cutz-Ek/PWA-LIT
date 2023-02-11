@@ -1,4 +1,4 @@
-Paso 4
+Paso 5
 import type {SVGTemplateResult} from "lit";
 
 import {LitElement, html, svg} from 'lit';
@@ -57,6 +57,18 @@ const createTile = () => svg`
   </g>
 `;
 
+const createRepeatPattern = () => svg`
+  <pattern
+    id="repeat-pattern"
+    x="-10"
+    y="-10"
+    width="200"
+    height="200"
+    patternUnits="userSpaceOnUse">
+    ${createTile()}
+  </pattern>
+`;
+
 @customElement('repeat-pattern')
 export class RepeatPattern extends LitElement {
   @property({type: String}) chars = "lit";
@@ -76,8 +88,11 @@ export class RepeatPattern extends LitElement {
             this.numPrints,
             this.rotationOffset,
           )}
+          ${createRepeatPattern()}
         </defs>
-            ${createTile()}
+    
+        <rect fill="#ffffff" height="100%" width="100%"></rect>
+        <rect fill="url(#repeat-pattern)" height="100%" width="100%"></rect>
       </svg>
     `;
   }
