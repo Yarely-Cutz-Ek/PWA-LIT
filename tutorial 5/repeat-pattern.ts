@@ -1,4 +1,4 @@
-Paso 6
+Paso 7
 import type {SVGTemplateResult} from "lit";
 
 import {LitElement, html, svg, css} from 'lit';
