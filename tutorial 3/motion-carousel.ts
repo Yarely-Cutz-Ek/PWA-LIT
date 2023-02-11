@@ -1,4 +1,4 @@
-paso 7
+paso 8
 import {LitElement, html, PropertyValues} from 'lit';
 import {customElement, property, query} from 'lit/decorators.js';
 import {styles} from './styles.js';
@@ -27,12 +27,21 @@ export class MotionCarousel extends LitElement {
 
   private left = 0;
   render() {
-    if (this.hasValidSelected()) {
-      this.selectedInternal = this.selected;
-    }
-    const animateLeft = ``;
-    const selectedLeft = ``;
-    const previousLeft = ``;
+    const p = this.selectedInternal;
+    const s = (this.selectedInternal =
+      this.hasValidSelected() ? this.selected : this.selectedInternal);
+    const shouldMove = this.hasUpdated && s !== p;
+    const atStart = p === 0;
+    const toStart = s === 0;
+    const atEnd = p === this.maxSelected;
+    const toEnd = s === this.maxSelected;
+    const shouldAdvance = shouldMove &&
+      (atEnd ? toStart : atStart ? !toEnd : s > p);
+    const delta = (shouldMove ? Number(shouldAdvance) || -1 : 0) * 100;
+    this.left -= delta;
+    const animateLeft = `${this.left}%`;
+    const selectedLeft = `${-this.left}%`;
+    const previousLeft = `${-this.left - delta}%`;
     return html`
       <div class="fit"
         @click=${this.clickHandler}
