@@ -1,10 +1,13 @@
-import {ComplexAttributeConverter} from 'lit';
+paso 4
+import type {ComplexAttributeConverter} from 'lit';
 
-export const dateConverter: ComplexAttributeConverter<Date> = {
-  toAttribute: (date: Date) => {
-    return date.toString();
-  },
-  fromAttribute: (value: string) => {
-    return new Date(value);
+export const dateConverter = (locale: string): ComplexAttributeConverter<Date> => {
+  return {
+    toAttribute: (date: Date) => {
+      return date.toLocaleDateString(locale);
+    },
+    fromAttribute: (value: string) => {
+      return new Date(value);
+    }
   }
 };
