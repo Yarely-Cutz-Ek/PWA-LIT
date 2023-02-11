@@ -1,4 +1,4 @@
-paso 6
+paso 7
 import {css} from 'lit';
 
 export const styles = css`
