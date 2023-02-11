@@ -1,17 +1,43 @@
-Paso 5
+Paso 6
 import type {SVGTemplateResult} from "lit";
 
-import {LitElement, html, svg} from 'lit';
+import {LitElement, html, svg, css} from 'lit';
 import {customElement, property} from 'lit/decorators.js';
 
+
+const themeCSS = css`
+  .background {
+    fill: var(--background-color, #000000);
+  }
+
+  text {
+    fill: var(--font-color, #ffffff);
+    font-size: var(--font-size, 26px);
+    stroke-width: var(--stroke-width, 1.2px);
+    stroke: var(--stroke-color, #eeeeee);
+  }
+`;
+
+const svgCSS = css`
+  :host {
+    display: block;
+  }
+
+  svg {
+    height: 100%;
+    width: 100%;
+  }
+
+  text {
+    fill: #ffffff;
+    dominant-baseline: hanging;
+    font-family: monospace;
+    font-size: 24px;
+  }
+`;
+
 const createElement = (chars: string): SVGTemplateResult => svg`
-  <text
-    id="chars"
-    dominant-basline="hanging"
-    font-family="monospace"
-    font-size="24px">
-    ${chars}
-  </text>
+  <text id="chars">${chars}</text>
 `;
 
 const createMotif = (
@@ -71,6 +97,8 @@ const createRepeatPattern = () => svg`
 
 @customElement('repeat-pattern')
 export class RepeatPattern extends LitElement {
+  static styles = [svgCSS, themeCSS];
+
   @property({type: String}) chars = "lit";
   @property({type: Number, attribute: "num-prints"}) numPrints = 7;
   @property({
@@ -80,7 +108,7 @@ export class RepeatPattern extends LitElement {
 
   render() {
     return html`
-      <svg height="100%" width="100%">
+      <svg>
         <defs>
           ${createTileBoundary()}
           ${createElement(this.chars)}
@@ -90,8 +118,8 @@ export class RepeatPattern extends LitElement {
           )}
           ${createRepeatPattern()}
         </defs>
-    
-        <rect fill="#ffffff" height="100%" width="100%"></rect>
+
+        <rect class="background" height="100%" width="100%"></rect>
         <rect fill="url(#repeat-pattern)" height="100%" width="100%"></rect>
       </svg>
     `;
