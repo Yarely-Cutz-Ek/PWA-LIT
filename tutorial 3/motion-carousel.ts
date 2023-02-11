@@ -1,4 +1,4 @@
-paso 3
+paso 4
 import {LitElement, html, PropertyValues} from 'lit';
 import {customElement, property} from 'lit/decorators.js';
 import {styles} from './styles.js';
@@ -25,9 +25,22 @@ export class MotionCarousel extends LitElement {
     }
     return html`
       <div class="fit">
-        <slot></slot>
+        <slot name="selected"></slot>
       </div>
     `;
+  }
+
+  private previous = 0;
+  protected updated(changedProperties: PropertyValues) {
+    if (changedProperties.has('selected') && this.hasValidSelected()) {
+      this.updateSlots();
+      this.previous = this.selected;
+    }
+  }
+
+  private updateSlots() {
+    this.children[this.previous]?.removeAttribute('slot');
+    this.children[this.selected]?.setAttribute('slot', 'selected');
   }
 
 }
