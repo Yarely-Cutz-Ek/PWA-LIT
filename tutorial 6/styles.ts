@@ -1,4 +1,4 @@
-paso 5
+paso 6
 import {css} from 'lit';
 
 export const styles = css`
@@ -18,6 +18,10 @@ export const styles = css`
     position: relative;
     height: 100%;
     width: 100%;
+  }
+
+  .selected {
+    top: -100%;
   }
 
   ::slotted(*) {
