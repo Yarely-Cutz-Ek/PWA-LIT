@@ -1,4 +1,4 @@
-Paso 2
+Paso 3
 import {LitElement, html} from 'lit';
 import {customElement, property} from 'lit/decorators.js';
 import {styles} from './styles.js';
