@@ -1,4 +1,4 @@
-paso 8
+paso 9
 import {css} from 'lit';
 
 export const styles = css`
@@ -28,4 +28,24 @@ export const styles = css`
     box-sizing: border-box;
     width: 100%;
     height: 100%;
+  }
+
+  .bar {
+    position: absolute;
+    bottom: 8px;
+    width: calc(100% - 16px);
+    left: 8px;
+    height: 8px;
+    background: rgba(200, 200, 200, 0.5);
+    border-radius: 8px;
+    pointer-events: none;
+  }
+
+  .indicator {
+    position: relative;
+    display: inline-block;
+    height: 100%;
+    width: 8px;
+    border-radius: 8px;
+    background: #eee;
   }`;
