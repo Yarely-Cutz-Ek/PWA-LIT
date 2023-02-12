@@ -1,4 +1,4 @@
-Paso 4
+Paso 5
 import {LitElement, html, PropertyValues} from 'lit';
 import {customElement, property} from 'lit/decorators.js';
 import {styles} from './styles.js';
@@ -24,10 +24,18 @@ export class MotionCarousel extends LitElement {
       this.selectedInternal = this.selected;
     }
     return html`
-      <div class="fit">
+      <div class="fit" @click=${this.clickHandler}>
         <slot name="selected"></slot>
       </div>
     `;
+  }
+
+  private clickHandler(e: MouseEvent) {
+    const i = this.selected + (Number(!e.shiftKey) || -1);
+    this.selected = i > this.maxSelected ? 0 : i < 0 ? this.maxSelected : i;
+    const change = new CustomEvent('change',
+      {detail: this.selected, bubbles: true, composed: true});
+    this.dispatchEvent(change);
   }
 
   private previous = 0;
