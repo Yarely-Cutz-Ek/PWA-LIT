@@ -1,4 +1,4 @@
-Paso 9
+Paso 10
 import {LitElement, html, PropertyValues, noChange} from 'lit';
 import {customElement, property, query} from 'lit/decorators.js';
 import {animate} from '@lit-labs/motion';
